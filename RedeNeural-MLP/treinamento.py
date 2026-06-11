@@ -46,11 +46,15 @@ tolerancia = 0.001
 
 
 # máximo de épocas
-max_epocas = 100
+max_epocas = 10000
 
 
 # guarda erro por época
 erros = []
+
+
+# controla convergência
+convergiu = False
 
 
 print()
@@ -75,13 +79,17 @@ for epoca in range(max_epocas):
     # mostra progresso
     if epoca % 100 == 0:
 
-        print(f"Época {epoca} | Erro = {erro_total:.6f}")
+        print( f"Época {epoca} | "f"Erro = {erro_total:.6f}")
 
     # verifica convergência
     if erro_total < tolerancia:
 
+        convergiu = True
+
         print()
+
         print(f"Convergência atingida na época {epoca}")
+
         print()
 
         break
@@ -90,14 +98,31 @@ for epoca in range(max_epocas):
 print("..............")
 print("Treinamento Finalizado")
 
+print()
+
+
+# verifica resultado final
+if convergiu:
+
+    print("Status: Rede convergiu.")
+
+else:
+
+    print("Status: Rede NÃO convergiu.")
+
 
 print()
 
-print("Erro Final:", round(erro_total, 6))
+print("Erro Final:", round(erro_total, 6)
+)
 
 print()
 
-print("Épocas utilizadas:", epoca)
+print("Menor erro atingido:", round(min(erros), 6))
+
+print()
+
+print("Épocas utilizadas:",epoca) 
 
 print()
 
@@ -108,21 +133,31 @@ saida_final = rede.forward(X)
 print("Resultados XOR")
 print("..............")
 
-for entrada, resultado in zip(X, saida_final):
+for entrada, esperado, resultado in zip(X, y,saida_final):
 
-    print(f"{entrada} -> {resultado[0]:.6f}")
+    print(
+
+        f"Entrada: {entrada} "
+        f"| Esperado: {esperado[0]} "
+        f"| Obtido: {resultado[0]:.6f}"
+    )
 
 
-# gráfico
-plt.figure(figsize=(8,5))
+print()
 
-plt.plot(erros)
+
+# gráfico erro x época
+plt.figure(figsize=(8, 5))
+
+plt.plot(erros, label="Erro Total")
 
 plt.title("Erro x Época")
 
 plt.xlabel("Épocas")
 
 plt.ylabel("Erro Absoluto Total")
+
+plt.legend()
 
 plt.grid(True)
 

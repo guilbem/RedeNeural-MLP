@@ -91,3 +91,9 @@ class mlp:
 
         # atualiza bias oculta
         self.bias_oculta += self.taxa * np.sum(delta_oculta, axis=0, keepdims=True)
+
+
+          # calcula erro absoluto total
+    def calcular_erro(self, y):
+
+        return np.sum(np.abs(y - self.saida_final))

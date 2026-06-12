@@ -1,6 +1,6 @@
 import numpy as np
 
-from src.mlp import mlp
+from mlp import mlp
 
 # padrões XOR
 X = np.array(

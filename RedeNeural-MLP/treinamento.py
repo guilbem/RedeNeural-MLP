@@ -45,7 +45,7 @@ tolerancia = 0.001
 
 
 # máximo de épocas
-max_epocas = 10000
+max_epocas = 100000
 
 
 # guarda erro por época

@@ -3,7 +3,6 @@ import matplotlib.pyplot as plt
 
 from src.mlp import mlp
 
-
 # padrões XOR
 X = np.array(
 

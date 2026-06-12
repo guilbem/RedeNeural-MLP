@@ -2,7 +2,6 @@ import numpy as np
 
 from src.mlp import mlp
 
-
 # padrões XOR
 X = np.array(
 
@@ -28,9 +27,9 @@ y = np.array(
 
 
 print()
-print("==============================")
-print("EXPERIMENTO B")
-print("==============================")
+print("-------------------")
+print("Experimento B")
+
 print()
 
 
@@ -50,9 +49,7 @@ for taxa in taxas:
 
     print()
 
-    print(
-        f"Taxa de aprendizagem = {taxa}"
-    )
+    print(f"Taxa de aprendizagem = {taxa}")
 
     print("--------------------------")
 
@@ -71,7 +68,6 @@ for taxa in taxas:
 
 
     tolerancia = 0.001
-
     max_epocas = 10000
 
 

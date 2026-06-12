@@ -2,7 +2,6 @@ import numpy as np
 
 from mlp import mlp
 
-
 # padrões XOR
 X = np.array(
 
@@ -29,7 +28,7 @@ y = np.array(
 
 print()
 print("...........")
-print("EXPERIMENTO A")
+print("Experimento A")
 print(".........")
 print()
 
@@ -49,9 +48,7 @@ for ocultos in quantidades:
 
     print()
 
-    print(
-        f"Testando {ocultos} neurônios ocultos"
-    )
+    print(f"Testando {ocultos} neurônios ocultos")
 
     print("--------------------------")
 
@@ -71,7 +68,6 @@ for ocultos in quantidades:
 
     # parâmetros
     tolerancia = 0.001
-
     max_epocas = 10000
 
 
@@ -82,18 +78,10 @@ for ocultos in quantidades:
         saida = rede.forward(X)
 
         # erro total
-        erro_total = np.sum(
-
-            np.abs(
-                y - saida
-            )
-        )
+        erro_total = np.sum(np.abs(y - saida))
 
         # backward
-        rede.backward(
-            X,
-            y
-        )
+        rede.backward(X, y)
 
         # verifica convergência
         if erro_total < tolerancia:
@@ -102,12 +90,8 @@ for ocultos in quantidades:
 
 
     # resultados
-    print(
-        f"Épocas: {epoca}"
-    )
+    print(f"Épocas: {epoca}")
 
-    print(
-        f"Erro Final: {erro_total:.6f}"
-    )
+    print(f"Erro Final: {erro_total:.6f}")
 
     print()

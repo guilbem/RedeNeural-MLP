@@ -7,7 +7,7 @@ def sigmoide_binaria(x):
     return 1 / (1 + np.exp(-x))
 
 # Calcula a derivada da sigmoide binária
-# Utilizada durante o algoritmo Backpropagation
+# uso no Backpropagation
 def derivada_sigmoide_binaria(x):
 
     # Calcula a saída da sigmoide
@@ -25,7 +25,7 @@ def sigmoide_bipolar(x):
 
 
 # Calcula a derivada da sigmoide bipolar
-# Necessária para a atualização dos pesos
+# faz atualização dos pesos
 def derivada_sigmoide_bipolar(x):
 
     # Obtém a saída da sigmoide bipolar
@@ -43,7 +43,7 @@ def tangente_hiperbolica(x):
 
 
 # Calcula a derivada da tangente hiperbólica
-# Utilizada durante a retropropagação do erro
+# faz a retropropagação do erro
 def derivada_tangente_hiperbolica(x):
 
     # Retorna valores no intervalo de -1 a 1

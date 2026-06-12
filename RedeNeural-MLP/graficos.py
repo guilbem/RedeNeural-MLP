@@ -9,7 +9,7 @@ from src.funcao_ativacao import (
 )
 
 # cria valores de x entre -10 e 10
-# utilizados para desenhar as curvas
+# desenhar as curvas
 x = np.linspace(-10, 10, 1000)
 
 
@@ -19,7 +19,7 @@ x = np.linspace(-10, 10, 1000)
 # calcula os valores da função
 y_sigmoide = sigmoide_binaria(x)
 
-# cria uma nova figura
+# cria nova figura
 plt.figure()
 
 # desenha a curva da função

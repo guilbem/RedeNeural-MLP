@@ -2,7 +2,6 @@ import numpy as np
 
 from src.mlp import mlp
 
-
 # padrões XOR
 X = np.array(
 
@@ -29,7 +28,7 @@ y = np.array(
 
 print()
 print(".................")
-print("EXPERIMENTO C")
+print("Experimento C")
 print("Influência dos Pesos Iniciais")
 print(".................")
 print()
@@ -50,9 +49,7 @@ for seed in sementes:
 
     print()
 
-    print(
-        f"Semente = {seed}"
-    )
+    print(f"Semente = {seed}")
 
     print("--------------------")
 
@@ -75,7 +72,6 @@ for seed in sementes:
 
 
     tolerancia = 0.001
-
     max_epocas = 10000
 
 

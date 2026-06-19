@@ -1,0 +1,15 @@
+# Ignorar o ambiente virtual do Python (onde ficam os 2 mil arquivos)
+.venv/
+venv/
+ENV/
+
+# Ignorar arquivos temporários que o Python cria sozinho
+**/__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+.vscode/
+
+*.csv
+*.docx

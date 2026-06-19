@@ -1,0 +1,5 @@
+{
+    "python.analysis.extraPaths": [
+        "./RedeNeural-MLP/.venv/Lib/site-packages"
+    ]
+}

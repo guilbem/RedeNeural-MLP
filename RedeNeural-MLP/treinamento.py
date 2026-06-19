@@ -1,5 +1,10 @@
 import numpy as np
 import matplotlib.pyplot as plt
+import pandas as pd
+import os
+
+# fixa semente aleatória
+np.random.seed(42)
 
 from src.mlp import mlp
 
@@ -14,7 +19,6 @@ X = np.array(
     ]
 )
 
-
 # saídas desejadas
 y = np.array(
 
@@ -26,7 +30,6 @@ y = np.array(
     ]
 )
 
-
 # cria rede
 rede = mlp(
 
@@ -36,49 +39,62 @@ rede = mlp(
 
     saidas=1,
 
-    taxa=0.2
+    taxa=0.5
 )
 
-
 # erro tolerado
-tolerancia = 0.001
-
+tolerancia = 0.0001
 
 # máximo de épocas
-max_epocas = 100000
-
+max_epocas = 1000
 
 # guarda erro por época
 erros = []
 
-
 # controla convergência
 convergiu = False
-
 
 print()
 print("Iniciando treinamento...")
 print()
 
-
+# laço principal
 for epoca in range(max_epocas):
 
-    # FORWARD
-    saida = rede.forward(X)
+    # zera erro da época
+    erro_total = 0
 
-    # erro absoluto total
-    erro_total = np.sum(np.abs(y - saida))
+    # percorre cada padrão XOR
+    for entrada, esperado in zip(X, y):
+
+        # transforma em matriz 1x2
+        entrada = entrada.reshape(1, -1)
+
+        # transforma em matriz 1x1
+        esperado = esperado.reshape(1, -1)
+
+        # FORWARD
+        saida = rede.forward(entrada)
+
+        # calcula erro quadrático médio
+        erro = np.mean((esperado - saida) ** 2)
+
+        # acumula erro
+        erro_total += erro
+
+        # BACKWARD
+        rede.backward(entrada,esperado)
+
 
     # salva histórico
     erros.append(erro_total)
 
-    # BACKWARD
-    rede.backward(X, y)
 
     # mostra progresso
     if epoca % 100 == 0:
 
-        print( f"Época {epoca} | "f"Erro = {erro_total:.6f}")
+        print(f"Época {epoca} | "f"Erro = {erro_total:.8f}")
+
 
     # verifica convergência
     if erro_total < tolerancia:
@@ -112,16 +128,16 @@ else:
 
 print()
 
-print("Erro Final:", round(erro_total, 6)
-)
+print("Erro Final:", round(erro_total, 8))
 
 print()
 
-print("Menor erro atingido:", round(min(erros), 6))
+print("Menor erro atingido:", round(min(erros), 8))
 
 print()
 
-print("Épocas utilizadas:",epoca) 
+print("Épocas utilizadas:", epoca)
+
 
 print()
 
@@ -132,18 +148,13 @@ saida_final = rede.forward(X)
 print("Resultados XOR")
 print("..............")
 
-for entrada, esperado, resultado in zip(X, y,saida_final):
 
-    print(
+for entrada, esperado, resultado in zip(X, y, saida_final):
 
-        f"Entrada: {entrada} "
-        f"| Esperado: {esperado[0]} "
-        f"| Obtido: {resultado[0]:.6f}"
-    )
+    print(f"Entrada: {entrada} "f"| Esperado: {esperado[0]} "f"| Obtido: {resultado[0]:.6f}")
 
 
 print()
-
 
 # gráfico erro x época
 plt.figure(figsize=(8, 5))
@@ -154,10 +165,31 @@ plt.title("Erro x Época")
 
 plt.xlabel("Épocas")
 
-plt.ylabel("Erro Absoluto Total")
+plt.ylabel("Erro Quadrático Total")
 
 plt.legend()
 
 plt.grid(True)
 
 plt.show()
+
+
+# cria pasta resultados
+os.makedirs("resultados", exist_ok=True)
+
+
+# cria tabela de erros
+df = pd.DataFrame({"Epoca": range(len(erros)),"Erro": erros})
+
+
+# salva csv
+df.to_csv("resultados/erro_por_epoca.csv", index=False)
+
+
+print()
+
+print("Arquivo salvo em:")
+
+print("resultados/erro_por_epoca.csv")
+
+print()

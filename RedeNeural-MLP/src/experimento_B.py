@@ -68,7 +68,7 @@ for taxa in taxas:
 
 
     tolerancia = 0.001
-    max_epocas = 10000
+    max_epocas = 1000
 
 
     # treinamento

@@ -72,7 +72,7 @@ for seed in sementes:
 
 
     tolerancia = 0.001
-    max_epocas = 10000
+    max_epocas = 1000
 
 
     for epoca in range(max_epocas):

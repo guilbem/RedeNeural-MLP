@@ -43,10 +43,10 @@ rede = mlp(
 )
 
 # erro tolerado
-tolerancia = 0.0001
+tolerancia = 0.1
 
 # máximo de épocas
-max_epocas = 1000
+max_epocas = 618
 
 # guarda erro por época
 erros = []

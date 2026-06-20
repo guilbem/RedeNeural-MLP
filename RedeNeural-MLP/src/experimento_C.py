@@ -48,10 +48,7 @@ sementes = [
 for seed in sementes:
 
     print()
-
     print(f"Semente = {seed}")
-
-    print("--------------------")
 
 
     # fixa aleatoriedade
@@ -71,8 +68,8 @@ for seed in sementes:
     )
 
 
-    tolerancia = 0.001
-    max_epocas = 1000
+    tolerancia = 0.1
+    max_epocas = 618
 
 
     for epoca in range(max_epocas):

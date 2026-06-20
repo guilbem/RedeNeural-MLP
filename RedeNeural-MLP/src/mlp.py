@@ -77,6 +77,8 @@ class mlp:
         # calcula delta da camada oculta
         delta_oculta = (erro_oculta * self.derivada_sigmoid(self.saida_oculta))
 
+
+
         # atualiza pesos oculta saída
         self.pesos_oculta_saida += ( self.taxa * np.dot(self.saida_oculta.T, delta_saida))
 
